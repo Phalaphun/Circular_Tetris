@@ -53,9 +53,7 @@
         public void RotateCW()
         {
             if(rotationState !=3)
-            {
                 rotationState++;
-            }
             else { rotationState=0; }
         }
         public void RotateCCW() 
