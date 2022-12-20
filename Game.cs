@@ -2,7 +2,7 @@
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
-using OpenTK.Windowing.GraphicsLibraryFramework; //795
+using OpenTK.Windowing.GraphicsLibraryFramework;
 namespace Kursach
 {
     internal class Game : GameWindow
@@ -39,10 +39,10 @@ namespace Kursach
             r = 60;
             dr = 20;
             centerPoint = new Vector2(510, 510);
-            GL.MatrixMode(MatrixMode.Projection); //Как я понял тут выбирается локальная матрица над которой сейчас будет работа происходить.
-            GL.LoadIdentity(); // Загружаем матрицу по умолчанию. Вроде бы единичная матрица
-            GL.Ortho(0, ortoWidth, 0, ortoHeight, -1, 1); // 0;0 находится в левом нижнем углу. У направлена вверх, х - направо. Перемножаю матрицу на новую.
-            GL.MatrixMode(MatrixMode.Modelview); // Выбираю снова глобальную матрицу 
+            GL.MatrixMode(MatrixMode.Projection); 
+            GL.LoadIdentity(); 
+            GL.Ortho(0, ortoWidth, 0, ortoHeight, -1, 1); 
+            GL.MatrixMode(MatrixMode.Modelview); 
             gameState = new GameStatus(height, width, centerPoint, r, dr);
             textureId = ContentPipe.LoadTexture(@"Content\Consolas_Alpha_W.png");
             tr1 = new TextRenderer(16, 16, textureId, (float)ortoWidth, (float)ortoHeight);
@@ -67,8 +67,8 @@ namespace Kursach
         }
         protected override void OnRenderFrame(FrameEventArgs args){
             base.OnRenderFrame(args);
-            GL.ClearColor(Color4.Black); //устанавливаем цвет для очистки
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit); //Производим очистку указанных буферов цвета
+            GL.ClearColor(Color4.Black); 
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit); 
             DrawAll(gameState);
             if (pause) { GL.Color4(Color4.White); tr2.RenderText(); }
             if(gameState.GameOver)
@@ -88,7 +88,7 @@ namespace Kursach
         protected override void OnUpdateFrame(FrameEventArgs args){
             if (!pause)
             {
-                if (!gameState.GameOver) // С момента окончания прошлого игрового цикла у нас прошло некоторое время. Именно столько времени нам нужно просимулировать в игре, чтобы отобразить текущее состояние игроку. Сделано это с помощью серии фиксированных временных шагов
+                if (!gameState.GameOver) 
                 {
                     lag += args.Time;
                     
@@ -112,7 +112,7 @@ namespace Kursach
         protected override void OnResize(ResizeEventArgs e){
             fiX = e.Width / ortoWidth; fiY = e.Height / ortoHeight;
             base.OnResize(e);
-            GL.Viewport(0, 0, e.Width, e.Height); //Указывают нижний левый угол прямоугольника видового экрана, в пикселях. ширина, высота Указывают ширину и высоту области просмотра. Задает преобразование x и y из нормализованных координат устройства в координаты окна
+            GL.Viewport(0, 0, e.Width, e.Height);
         }
         protected override void OnKeyDown(KeyboardKeyEventArgs e){
             base.OnKeyDown(e);
@@ -144,8 +144,8 @@ namespace Kursach
             gameState.CircleCell.Draw(ColorMass);
             foreach (Position p in gameState.CurrentBlock.TilePositions())
             {
-                GL.Color3(ColorMass[gameState.CurrentBlock.Id]); // рисует всю сетку без текущего блока
-                gameState.CircleCell.Cells[p.Row][p.Column].Draw(); // рисует текущий блок
+                GL.Color3(ColorMass[gameState.CurrentBlock.Id]); 
+                gameState.CircleCell.Cells[p.Row][p.Column].Draw(); 
             }
             foreach (Button butt in buttons)
                 butt.Draw();

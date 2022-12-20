@@ -18,8 +18,8 @@ namespace Kursach
             yy *= canvaHeight / 4;
         }
         public void PrepareText(float x, float y, float dx, string text, float scale = 1) {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); // Получаю доступ к доп кодировкам
-            Encoding encoding = Encoding.GetEncoding("windows-1251"); // Устанавливаю кодировку
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); 
+            Encoding encoding = Encoding.GetEncoding("windows-1251"); 
             byte[] asciiCodes = encoding.GetBytes(text); 
             for (int i = 0; i < text.Length; i++){
                 LetterRender(x + i * dx, y, asciiCodes[i], out int a, out int b, out int vao, scale);
@@ -51,7 +51,7 @@ namespace Kursach
             GL.EnableClientState(ArrayCap.TextureCoordArray);
 
             GL.BindBuffer(BufferTarget.ArrayBuffer, b);
-            GL.TexCoordPointer(2, TexCoordPointerType.Float,0, 0); // первы нуль начальное положение, второй отвечает через сколько элементов лежат следующие нужные
+            GL.TexCoordPointer(2, TexCoordPointerType.Float,0, 0); 
             GL.BindBuffer(BufferTarget.ArrayBuffer, a);
             GL.VertexPointer(2, VertexPointerType.Float, 0, 0);
 
@@ -64,8 +64,8 @@ namespace Kursach
         }
         public void RenderText(){
             GL.Enable(EnableCap.Texture2D);
-            GL.Enable(EnableCap.Blend);// Подключаем режим отображения текстур
-            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha); //описывает как складываются пиксели источника и того, кто уже в кадре. В моём случае для прозрачности нужно.
+            GL.Enable(EnableCap.Blend);
+            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha); 
             
             for (int i = 0; i < vaoVboindex.Count; i += 3)
             {

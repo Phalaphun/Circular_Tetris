@@ -5,7 +5,7 @@ namespace Kursach{
         private int width, height;
         public Block CurrentBlock{
             get { return currentBlock; }
-            set{currentBlock = value;currentBlock.Reset(); //устанавливаем начальное положение. А то фиг его знает в каком состоянии блок сюда прилетит
+            set{currentBlock = value;currentBlock.Reset(); 
             }
         }
         public CircleCells CircleCell{ get; }

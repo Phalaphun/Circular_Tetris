@@ -59,8 +59,8 @@ namespace Kursach{
             }
         }
         public int ClearRow(){
-            int cleared = 0; //нужна чтобы определить на сколько потом сдвинуть все строчки вниз
-            for (int r = Rows - 1; r > 0; r--) // идём сверху вниз см.MoveRowDown 
+            int cleared = 0; 
+            for (int r = Rows - 1; r > 0; r--) 
             {
                 if (RowFullChecker(r))
                 {
@@ -116,7 +116,7 @@ namespace Kursach{
         public int Id { get { return id; } set { id = value; } }
         public Cell(Vector2 Center, int j, int i, int r, int dr, int width){
             float dAlpha = 2 * (float)Math.PI / width;
-            x2 = Center.X + (r + i * dr) * (float)Math.Cos(j * dAlpha); // r - внутренний радиус, dr-внешний(хотя скорее это ∆r, иначе говоря шаг), i- номер круга, j- число блоков в круге
+            x2 = Center.X + (r + i * dr) * (float)Math.Cos(j * dAlpha); // i- номер круга, j- число блоков в круге
             y2 = Center.Y + (r + i * dr) * (float)Math.Sin(j * dAlpha);
 
             x3 = Center.X + (r + i * dr + dr) * (float)Math.Cos(j * dAlpha);
