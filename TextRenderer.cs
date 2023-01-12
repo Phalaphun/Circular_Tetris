@@ -65,8 +65,9 @@ namespace Kursach
         public void RenderText(){
             GL.Enable(EnableCap.Texture2D);
             GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha); 
-            
+            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
+            GL.BindTexture(TextureTarget.Texture2D, textureId);
+
             for (int i = 0; i < vaoVboindex.Count; i += 3)
             {
                 GL.BindVertexArray(vaoVboindex[i]);
@@ -75,6 +76,7 @@ namespace Kursach
             }
             GL.Disable(EnableCap.Texture2D);
             GL.Disable(EnableCap.Blend);
+            GL.BindTexture(TextureTarget.Texture2D, 0);
         }
         public void Dispose(){
             GL.DeleteTexture(textureId);
