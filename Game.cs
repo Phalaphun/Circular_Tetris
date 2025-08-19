@@ -44,7 +44,8 @@ namespace Kursach
             GL.Ortho(0, ortoWidth, 0, ortoHeight, -1, 1); 
             GL.MatrixMode(MatrixMode.Modelview); 
             gameState = new GameStatus(height, width, centerPoint, r, dr);
-            textureId = ContentPipe.LoadTexture(@"Content\Consolas_Alpha_W.png");
+            // textureId = ContentPipe.LoadTexture(@"Content\Consolas_Alpha_W.png");
+            textureId = ContentPipe.LoadTexture(System.IO.Path.Combine("Content","Consolas_Alpha_W.png"));
             tr1 = new TextRenderer(16, 16, textureId, (float)ortoWidth, (float)ortoHeight);
             tr2 = new TextRenderer(16, 16, textureId, (float)ortoWidth, (float)ortoHeight);
             tr3 = new TextRenderer(16, 16, textureId, (float)ortoWidth, (float)ortoHeight);

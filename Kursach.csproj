@@ -7,8 +7,25 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+  <DefineConstants>OS_WINDOWS</DefineConstants>
+</PropertyGroup>
+<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+  <DefineConstants>OS_LINUX</DefineConstants>
+</PropertyGroup>
+<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('FreeBSD'))">
+  <DefineConstants>OS_FREEBSD</DefineConstants>
+</PropertyGroup>
+<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
+  <DefineConstants>OS_MAC</DefineConstants>
+</PropertyGroup>
+
+
+
   <ItemGroup>
     <PackageReference Include="OpenTK" Version="4.7.5" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.0" />
+    <PackageReference Include="StbImageSharp" Version="2.30.15" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>
 
