@@ -3,7 +3,7 @@ using OpenTK.Graphics.OpenGL;
 #if WINDOWS
 using System.Drawing;
 using System.Drawing.Imaging;
-#else
+#elif OS_LINUX
 using StbImageSharp;
 #endif
 
